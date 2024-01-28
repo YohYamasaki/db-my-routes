@@ -8,6 +8,7 @@
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --require test/test-setup.js -r ts-node/register 'test/**/*.ts' --exit"
   },
   "dependencies": {
+    "db-hafas": "^6.0.0",
     "mithril": "^2.2.2"
   },
   "devDependencies": {

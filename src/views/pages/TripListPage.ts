@@ -3,7 +3,7 @@ import m, {ClassComponent, Vnode, Children} from "mithril";
 interface DepartureListPageAttrs {
 }
 
-export class DepartureListPage implements ClassComponent<DepartureListPageAttrs> {
+export class TripListPage implements ClassComponent<DepartureListPageAttrs> {
 	private data: any[];
 	private fetchTest = async () => {
 		const url = "https://v6.db.transport.rest/stops/8010159/departures?direction=8011113&duration=120";
