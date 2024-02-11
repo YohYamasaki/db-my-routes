@@ -3,18 +3,21 @@ import {journey} from "../types/journey";
 
 interface ITripListModel {
     journeys: journey[],
-    fetchJourneys: () => void
+    fetchJourneys: () => void,
+    toggleNational: (useNational: boolean) => void
 }
 
 export class JourneyListModel implements ITripListModel {
     private _journeys: journey[] = [];
     private _departureStationId: string;
     private _arrivalStationId: string;
-    trainName: string = "";
+    private _useNational: boolean;
 
-    constructor(departureStationId: string, arrivalStationId: string) {
+    constructor(departureStationId: string, arrivalStationId: string, includeNational: boolean) {
         this._departureStationId = departureStationId;
         this._arrivalStationId = arrivalStationId;
+        this._useNational = includeNational;
+
     }
 
     get journeys() {
@@ -24,7 +27,10 @@ export class JourneyListModel implements ITripListModel {
     fetchJourneys() {
         let params = new URLSearchParams({
             from: this._departureStationId,
-            to: this._arrivalStationId
+            to: this._arrivalStationId,
+            nationalExpress: this._useNational ? "true" : "false",
+            national: this._useNational ? "true" : "false",
+            results: "5"
         }).toString();
         let url = `https://v5.db.transport.rest/journeys?${params}`;
         fetch(url).then(res => {
@@ -37,5 +43,9 @@ export class JourneyListModel implements ITripListModel {
                 m.redraw();
             })
             .catch(err => console.error(err));
+    }
+
+    toggleNational(useNational: boolean) {
+        this._useNational = useNational;
     }
 }

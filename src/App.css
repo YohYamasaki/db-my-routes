@@ -4,54 +4,89 @@ body {
     color: #eee;
 }
 
-/* modal */
-/*dialog {*/
-/*    animation: fade-out 0.7s ease-out;*/
-/*}*/
+/* silder */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
 
-/*dialog[open] {*/
-/*    animation: fade-in 0.7s ease-out;*/
-/*}*/
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
 
-/*dialog[open]::backdrop {*/
-/*    animation: backdrop-fade-in 0.7s ease-out forwards;*/
-/*}*/
+/* The slider */
+.tgl {
+    display: none;
+}
 
-/*!* Animation keyframes *!*/
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+    box-sizing: border-box;
+}
 
-/*@keyframes fade-in {*/
-/*    0% {*/
-/*        opacity: 0;*/
-/*        display: none;*/
-/*    }*/
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+    background: none;
+}
 
-/*    100% {*/
-/*        opacity: 1;*/
-/*        display: block;*/
-/*    }*/
-/*}*/
+.tgl + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 4em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
 
-/*@keyframes fade-out {*/
-/*    0% {*/
-/*        opacity: 1;*/
-/*        display: block;*/
-/*    }*/
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
 
-/*    100% {*/
-/*        opacity: 0;*/
-/*        display: none;*/
-/*    }*/
-/*}*/
+.tgl + .tgl-btn:after {
+    left: 0;
+}
 
-/*@keyframes backdrop-fade-in {*/
-/*    0% {*/
-/*        background-color: rgb(0 0 0 / 0%);*/
-/*    }*/
+.tgl + .tgl-btn:before {
+    display: none;
+}
 
-/*    100% {*/
-/*        background-color: rgb(0 0 0 / 25%);*/
-/*    }*/
-/*}*/
+.tgl:checked + .tgl-btn:after {
+    left: 50%;
+}
+
+.tgl-flat + .tgl-btn {
+    padding: 2px;
+    transition: all 0.2s ease;
+    background: #eee;
+    border: 1px solid #eee;
+    border-radius: 2em;
+}
+
+.tgl-flat + .tgl-btn:after {
+    transition: all 0.2s ease;
+    background: #222;
+    content: "";
+    border-radius: 1em;
+}
+
+.tgl-flat:checked + .tgl-btn {
+    border: 1px solid #0A84FF;
+}
+
+.tgl-flat:checked + .tgl-btn:after {
+    left: 50%;
+    background: #0A84FF;
+}
+
 
 dialog {
     opacity: 0;
