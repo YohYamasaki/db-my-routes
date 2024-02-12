@@ -14,21 +14,29 @@ export class RouteListPage implements ClassComponent {
         return m("div", [
             m(Header, {title: "DB my route"}),
             m("div",
-                this.model.routes.map(route => {
-                    return m(ListItem, m(
-                        m.route.Link,
+                this.model.routes.map((route, idx) => {
+                    return m(ListItem,
                         {
-                            href: `/journey-list/${route.departure.name}/${route.departure.id}/${route.arrival.name}/${route.arrival.id}`
+                            key: idx,
                         },
-                        [m("p.p-2", `${route.departure.name} -> ${route.arrival.name}`)]
-                    ));
+                        m(
+                            m.route.Link,
+                            {
+                                href: `/journey-list/${route.departure.name}/${route.departure.id}/${route.arrival.name}/${route.arrival.id}`
+                            },
+                            [m("p.p-2", `${route.departure.name} -> ${route.arrival.name}`)]
+                        )
+                    );
                 })
             ),
-            m(m.route.Link,
-                {
-                    href: "/add-route"
-                },
-                m("span.border.p-2.mt-3", "Add Route"))
+            m(".flex.justify-center",
+                m(m.route.Link,
+                    {
+                        href: "/add-route"
+                    },
+                    m("span.block.w-40.text-center.border.p-2.mt-3", "Add Route")
+                )
+            ),
         ]);
     }
 }
