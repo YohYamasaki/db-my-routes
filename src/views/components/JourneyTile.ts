@@ -1,7 +1,7 @@
 import m, {ClassComponent, Vnode} from "mithril";
 import {journey} from "../../types/journey";
 import {parseDatetime} from "../../utils/parseDatetime";
-import {ListItem} from "./parts/listItem";
+import {ListItem} from "./parts/ListItem";
 import {createOriginalTime} from "../../utils/createOriginalTime";
 
 interface JourneyTileAttr {

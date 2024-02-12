@@ -1,7 +1,7 @@
 import m, {ClassComponent} from "mithril";
 import {Header} from "../components/Header";
 import {RouteListModel} from "../../models/RouteListModel";
-import {ListItem} from "../components/parts/listItem";
+import {ListItem} from "../components/parts/ListItem";
 
 export class RouteListPage implements ClassComponent {
     private model = new RouteListModel();
