@@ -22,7 +22,7 @@ export class JourneyListPage implements ClassComponent<JourneyListPageAttrs> {
     view({attrs}: Vnode<JourneyListPageAttrs>): void | Children {
         return m("div.w-full",
             [
-                m(Header, {title: "Journey List", showButton: false}),
+                m(Header, {title: "Journey List", showBackButton: true}),
                 m(".flex.gap-4.justify-between.px-2.mt-2", [
                     // Update data
                     m("button.bg-gray-800.px-4.py-2.border.rounded-md.font-bold.hover:opacity-60",
