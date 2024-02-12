@@ -17,9 +17,9 @@ export class RouteListPage implements ClassComponent {
                 this.model.routes.map((route, idx) => {
                     return m(ListItem,
                         {
-                            key: route.departure.id + route.arrival.id,
+                            key: idx,
                             action: () => this.model.deleteRoute(idx),
-                            actionIcon: "Delete"
+                            actionIcon: "Delete",
                         },
                         m(
                             m.route.Link,
@@ -27,14 +27,18 @@ export class RouteListPage implements ClassComponent {
                                 href: `/journey-list/${route.departure.name}/${route.departure.id}/${route.arrival.name}/${route.arrival.id}`
                             },
                             [m("p.p-2", `${route.departure.name} -> ${route.arrival.name}`)]
-                        ));
+                        )
+                    );
                 })
             ),
-            m(m.route.Link,
-                {
-                    href: "/add-route"
-                },
-                m("span.border.p-2.mt-3", "Add Route"))
+            m(".flex.justify-center",
+                m(m.route.Link,
+                    {
+                        href: "/add-route"
+                    },
+                    m("span.block.w-40.text-center.border.p-2.mt-3", "Add Route")
+                )
+            ),
         ]);
     }
 }
