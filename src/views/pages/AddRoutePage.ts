@@ -32,7 +32,7 @@ export class AddRoutePage implements ClassComponent<AddRoutePageAttrs> {
 
     view() {
         return m("div.w-full", [
-            m(Header, {title: "Station Search", showButton: false}),
+            m(Header, {title: "Station Search", showBackButton: true}),
             m("div.pt-3.flex.flex-col.gap-3", [
                 // departure selector
                 m("button.block.w-full.bg-gray-800.px-2.py-3.text-start",
