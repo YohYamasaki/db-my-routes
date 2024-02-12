@@ -11,6 +11,16 @@ export class RouteListModel implements IRouteListModel {
         return this._routes;
     }
 
+    deleteRoute(target: number) {
+        try {
+            this._routes.splice(target, 1);
+            const updatedJson = JSON.stringify(this._routes);
+            localStorage.setItem("routes", updatedJson);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     getRouteList() {
         try {
             const routesJson = localStorage.getItem("routes");

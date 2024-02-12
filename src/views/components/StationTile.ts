@@ -1,5 +1,5 @@
 import m, {ClassComponent, Vnode} from "mithril";
-import {ListItem} from "./parts/listItem";
+import {ListItem} from "./parts/ListItem";
 import {station} from "../../types/station";
 
 interface StationTileAttrs {
