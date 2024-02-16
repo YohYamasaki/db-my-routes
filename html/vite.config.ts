@@ -1,10 +1,11 @@
-import { defineConfig } from "vite";
+import {defineConfig} from "vite";
 
 export default defineConfig({
-  // Uncomment to use JSX:
-  // esbuild: {
-  //   jsx: "transform",
-  //   jsxFactory: "m",
-  //   jsxFragment: "'['",
-  // },
+    base: "/db-my-routes/"
+    // Uncomment to use JSX:
+    // esbuild: {
+    //   jsx: "transform",
+    //   jsxFactory: "m",
+    //   jsxFragment: "'['",
+    // },
 });
