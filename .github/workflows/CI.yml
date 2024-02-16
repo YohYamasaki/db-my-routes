@@ -19,11 +19,11 @@ jobs:
       - name: deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST_IP }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          host: ${{ secrets.HOST.HOST_IP }}
+          username: ${{ secrets.HOST.USER }}
+          key: ${{ secrets.HOST.DEPLOY_PRIVATE_KEY }}
           script: |
-            cd ${{ secrets.SVR_DIR }}
+            cd ${{ secrets.HOST.SVR_DIR }}
             git pull origin main
             cd html
             npm run build
