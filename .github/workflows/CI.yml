@@ -19,6 +19,7 @@ jobs:
       - name: deploy
         uses: appleboy/ssh-action@master
         with:
+          environment: production
           host: ${{ secrets.HOST_IP }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
