@@ -22,9 +22,10 @@ jobs:
           environment: production
           host: ${{ secrets.HOST_IP }}
           username: ${{ secrets.USER }}
-          # key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
           script: |
             cd ${{ secrets.SVR_DIR }}
             git pull origin main
             cd html
+            npm install
             npm run build
