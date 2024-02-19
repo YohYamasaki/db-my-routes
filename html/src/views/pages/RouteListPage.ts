@@ -19,7 +19,7 @@ export class RouteListPage implements ClassComponent {
                         {
                             key: idx,
                             action: () => this.model.deleteRoute(idx),
-                            actionIcon: "trash-outline",
+                            actionIcon: "Delete",
                         },
                         m(
                             m.route.Link,

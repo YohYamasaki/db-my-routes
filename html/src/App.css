@@ -2,11 +2,6 @@
 body {
     background: black;
     color: #eee;
-    max-width: 600px;
-    margin: auto;
-    -webkit-box-shadow: 0px 0px 120px 0px rgba(153, 27, 27, 0.15);
-    -moz-box-shadow: 0px 0px 120px 0px rgba(153, 27, 27, 0.15);
-    box-shadow: 0px 0px 120px 0px rgba(153, 27, 27, 0.15);
 }
 
 /* silder */
@@ -78,19 +73,18 @@ body {
 
 .tgl-flat + .tgl-btn:after {
     transition: all 0.2s ease;
-    background: #888;
+    background: #222;
     content: "";
     border-radius: 1em;
 }
 
 .tgl-flat:checked + .tgl-btn {
     border: 1px solid #0A84FF;
-    background: #0a84ff;
 }
 
 .tgl-flat:checked + .tgl-btn:after {
     left: 50%;
-    background: #eee;
+    background: #0A84FF;
 }
 
 
