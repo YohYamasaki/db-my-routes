@@ -49,7 +49,7 @@ export class AddRoutePage implements ClassComponent<AddRoutePageAttrs> {
                         : "Select Arrival Station"
                 ),
                 // add route
-                m("button.block.w-2/3.m-auto.bg-red-800.p-3.mt-4", {onclick: () => this.model.addRoute()}, "Add Route"),
+                m("button.block.bg-red-800.px-4.py-3.m-auto.border.rounded-sm.font-bold.w-1/2.hover:opacity-60", {onclick: () => this.model.addRoute()}, "Add Route"),
 
                 // modal for departure station selection
                 m(Modal, {
