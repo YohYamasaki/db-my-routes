@@ -11,7 +11,7 @@ interface HeaderAttrs {
 
 export class Header implements ClassComponent<HeaderAttrs> {
     view({attrs}: Vnode<HeaderAttrs>) {
-        return m("div.flex.justify-center.items-center.w-full.h-11.bg-red-800", [
+        return m("div.relative.flex.justify-center.items-center.w-full.h-11.bg-red-800", [
             attrs.showBackButton && m(BackButton),
             m("h1.text-xl.font-bold", attrs.title),
             attrs.showButton &&
