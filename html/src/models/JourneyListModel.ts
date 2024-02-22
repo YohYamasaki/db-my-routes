@@ -27,7 +27,7 @@ export class JourneyListModel implements ITripListModel {
         return this._journeys;
     }
 
-    fetchJourneys() {
+    async fetchJourneys() {
         let params = new URLSearchParams({
             from: this._departureStationId,
             to: this._arrivalStationId,
@@ -36,23 +36,30 @@ export class JourneyListModel implements ITripListModel {
             results: "5",
         });
         // set arrival or departure
-        if (this._isArrival) {
-            params.set("arrival", parseDatetime(Date.now()));
-        } else {
-            params.set("departure", parseDatetime(Date.now()));
-        }
+        params.set(this._isArrival ? "arrival" : "departure", parseDatetime(Date.now()));
 
         let url = `https://v5.db.transport.rest/journeys?${params.toString()}`;
-        fetch(url).then(res => {
+        try {
+            const res = await fetch(url);
             if (!res.ok) throw Error(`${res.status} ${res.statusText}`);
-            return res.json();
-        })
-            .then(data => {
-                console.log(data);
+            const data = await res.json();
+
+            if (this._isArrival) {
+                // retrieve data again by laterThan
+                params.delete("arrival");
+                params.set("laterThan", data.laterRef);
+                const laterUrl = `https://v5.db.transport.rest/journeys?${params.toString()}`;
+                const laterRes = await fetch(laterUrl);
+                const laterData = await laterRes.json();
+                this._journeys = laterData["journeys"] as journey[];
+            } else {
+                // showing departure does not need additional fetch
                 this._journeys = data["journeys"] as journey[];
-                m.redraw();
-            })
-            .catch(err => console.error(err));
+            }
+            m.redraw();
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     toggleNational(useNational: boolean) {
