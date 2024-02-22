@@ -16,7 +16,10 @@ export class JourneyListPage implements ClassComponent<JourneyListPageAttrs> {
     private model: JourneyListModel | undefined;
 
     oninit({attrs}: Vnode<JourneyListPageAttrs>) {
+        // init model
         this.model = new JourneyListModel(attrs.departureId, attrs.arrivalId, false);
+        // fetch journey data
+        this.model.fetchJourneys();
     }
 
     view({attrs}: Vnode<JourneyListPageAttrs>): void | Children {
