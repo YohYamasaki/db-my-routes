@@ -1,4 +1,3 @@
-import m from "mithril";
 import {journey} from "../types/journey";
 import {parseDatetime} from "../utils/parseDatetime";
 
@@ -17,6 +16,9 @@ export class JourneyListModel implements ITripListModel {
     private _isArrival: boolean;
 
     constructor(departureStationId: string, arrivalStationId: string, includeNational: boolean) {
+        if (!departureStationId.match(/\d/) || !arrivalStationId.match(/\d/)) {
+            throw new Error("provide valid station id");
+        }
         this._departureStationId = departureStationId;
         this._arrivalStationId = arrivalStationId;
         this._useNational = includeNational;
@@ -41,8 +43,12 @@ export class JourneyListModel implements ITripListModel {
         let url = `https://v5.db.transport.rest/journeys?${params.toString()}`;
         try {
             const res = await fetch(url);
-            if (!res.ok) throw Error(`${res.status} ${res.statusText}`);
+            if (!res.ok) {
+                throw new Error(`${res.status} ${res.statusText}`);
+
+            }
             const data = await res.json();
+            console.log(data);
 
             if (this._isArrival) {
                 // retrieve data again by laterThan
@@ -56,7 +62,6 @@ export class JourneyListModel implements ITripListModel {
                 // showing departure does not need additional fetch
                 this._journeys = data["journeys"] as journey[];
             }
-            m.redraw();
         } catch (e) {
             console.error(e);
         }

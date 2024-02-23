@@ -15,11 +15,12 @@ interface JourneyListPageAttrs {
 export class JourneyListPage implements ClassComponent<JourneyListPageAttrs> {
     private model: JourneyListModel | undefined;
 
-    oninit({attrs}: Vnode<JourneyListPageAttrs>) {
+    async oninit({attrs}: Vnode<JourneyListPageAttrs>) {
         // init model
         this.model = new JourneyListModel(attrs.departureId, attrs.arrivalId, false);
         // fetch journey data
-        this.model.fetchJourneys();
+        await this.model.fetchJourneys();
+        m.redraw();
     }
 
     view({attrs}: Vnode<JourneyListPageAttrs>): void | Children {
@@ -41,8 +42,9 @@ export class JourneyListPage implements ClassComponent<JourneyListPageAttrs> {
                 // Update data
                 m("button.block.bg-red-800.px-4.py-2.m-auto.border.rounded-sm.font-bold.w-1/3.hover:opacity-60",
                     {
-                        onclick: () => {
-                            this.model?.fetchJourneys();
+                        onclick: async () => {
+                            await this.model?.fetchJourneys();
+                            m.redraw();
                         },
                     },
                     "Update Data"),
