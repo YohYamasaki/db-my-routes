@@ -2,7 +2,6 @@ import m, {ClassComponent, Vnode} from "mithril";
 import {journey} from "../../types/journey";
 import {parseDatetime} from "../../utils/parseDatetime";
 import {ListItem} from "./parts/ListItem";
-import {createOriginalTime} from "../../utils/createOriginalTime";
 
 interface JourneyTileAttr {
     arrivalStationName: string,
@@ -26,7 +25,7 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
                         // cancelled
                         isCancelled && m("p", `Train Cancelled`),
                         // original time
-                        m("p.font-bold.text-lg.text-gray-500", `${createOriginalTime(firstLeg.departure, firstLeg.departureDelay!)} -> ${createOriginalTime(firstLeg.arrival, firstLeg.arrivalDelay!)}`),
+                        m("p.font-bold.text-lg.text-gray-500", `${parseDatetime(firstLeg.plannedDeparture)} -> ${parseDatetime(firstLeg.plannedArrival)}`),
 
                         // actual time
                         m("p.font-bold.text-lg", [

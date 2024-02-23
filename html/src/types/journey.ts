@@ -4,11 +4,11 @@ export interface journey {
     refreshToken: string
 }
 
-interface journeyLeg {
+export interface journeyLeg {
     arrival: string,
     arrivalDelay: number | null,
     arrivalPlatform: string,
-    cancelled: boolean
+    cancelled: boolean,
     departure: string,
     departureDelay: number | null,
     departurePlatform: string,
