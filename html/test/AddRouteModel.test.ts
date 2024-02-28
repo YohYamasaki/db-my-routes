@@ -1,29 +1,6 @@
 import { AddRouteModel } from "../src/models/AddRouteModel";
 import { station } from "../src/types/station";
-
-class LocalStorageMock {
-  private store: Record<string, string>;
-
-  constructor() {
-    this.store = {};
-  }
-
-  clear() {
-    this.store = {};
-  }
-
-  getItem(key: string) {
-    return this.store[key] || null;
-  }
-
-  setItem(key: string, value: string) {
-    this.store[key] = String(value);
-  }
-
-  removeItem(key: string) {
-    delete this.store[key];
-  }
-}
+import { LocalStorageMock } from "../src/mocks/localStorageMock";
 
 const sampleStation1: station = {
   id: "8000128",
