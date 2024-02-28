@@ -3,6 +3,7 @@ import { parseDatetime } from "../utils/parseDatetime";
 
 interface ITripListModel {
   journeys: journey[];
+  searchTime: string;
   fetchJourneys: () => void;
   toggleNational: (useNational: boolean) => void;
   toggleType: (isArrival: boolean) => void;
@@ -14,6 +15,7 @@ export class JourneyListModel implements ITripListModel {
   private _arrivalStationId: string;
   private _useNational: boolean;
   private _isArrival: boolean;
+  private _searchTime: string;
 
   constructor(
     departureStationId: string,
@@ -27,10 +29,22 @@ export class JourneyListModel implements ITripListModel {
     this._arrivalStationId = arrivalStationId;
     this._useNational = includeNational;
     this._isArrival = false;
+    this._searchTime = parseDatetime(Date.now());
   }
 
   get journeys() {
     return this._journeys;
+  }
+
+  get searchTime() {
+    return this._searchTime;
+  }
+
+  setSearchTime(time: string) {
+    if (!time.match(/^([0-1][0-9]|2[0-4]):[0-5][0-9]$/)) {
+      console.error(Error("invalid time data"));
+    }
+    this._searchTime = time;
   }
 
   async fetchJourneys() {
@@ -42,10 +56,7 @@ export class JourneyListModel implements ITripListModel {
       results: "5"
     });
     // set arrival or departure
-    params.set(
-      this._isArrival ? "arrival" : "departure",
-      parseDatetime(Date.now())
-    );
+    params.set(this._isArrival ? "arrival" : "departure", this._searchTime);
 
     let url = `https://v5.db.transport.rest/journeys?${params.toString()}`;
     try {
