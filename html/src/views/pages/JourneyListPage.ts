@@ -3,6 +3,8 @@ import { JourneyListModel } from "../../models/JourneyListModel";
 import { JourneyTile } from "../components/JourneyTile";
 import { Header } from "../components/Header";
 import { ToggleSwitch } from "../components/parts/ToggleSwitch";
+import { AppActions, AppState } from "../../states/appState";
+import { LoadingOverlay } from "../components/LoadingOverlay";
 
 interface JourneyListPageAttrs {
   departureId: string;
@@ -13,6 +15,9 @@ interface JourneyListPageAttrs {
 
 export class JourneyListPage implements ClassComponent<JourneyListPageAttrs> {
   private model: JourneyListModel | undefined;
+  // init state
+  private state = AppState();
+  private actions = AppActions(this.state);
 
   async oninit({ attrs }: Vnode<JourneyListPageAttrs>) {
     // init model
@@ -29,6 +34,7 @@ export class JourneyListPage implements ClassComponent<JourneyListPageAttrs> {
   view({ attrs }: Vnode<JourneyListPageAttrs>): void | Children {
     return m("div.w-full.min-h-screen", [
       m(Header, { title: "Journey List", showBackButton: true }),
+      m(LoadingOverlay, { isShow: this.state.isLoading }),
       m(
         "h2.text-2xl.font-bold.mt-2",
         `${attrs.departureName} -> ${attrs.arrivalName}`
@@ -63,7 +69,9 @@ export class JourneyListPage implements ClassComponent<JourneyListPageAttrs> {
         "button.block.bg-red-800.px-4.py-2.m-auto.border.rounded-sm.font-bold.w-1/3.hover:opacity-60",
         {
           onclick: async () => {
+            this.actions.showLoading();
             await this.model?.fetchJourneys();
+            this.actions.hideLoading();
             m.redraw();
           }
         },
