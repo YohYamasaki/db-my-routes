@@ -16,6 +16,11 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
     const lastLeg = journey.legs[journey.legs.length - 1];
     const isCancelled = journey.legs.some(leg => leg.cancelled);
 
+    const handleCopy = (text: string) => {
+      navigator.clipboard.writeText(text);
+      //   TODO: add notification here after implementing toast
+    };
+
     return m(ListItem, [
       m("div.px-2.py-3.w-full", [
         // station name
@@ -67,8 +72,27 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
                 )
             )
           ]),
-          // transfer number
-          m("p.text-sm", `${journey.legs.length - 1} transfer`)
+          m("div.flex.flex-col.justify-between.items-end", [
+            // transfer number
+            m("p.text-sm", `${journey.legs.length - 1} transfer`),
+            // copy button
+            m(
+              "button",
+              {
+                onclick: () =>
+                  handleCopy(
+                    `${attrs.departureStationName} (pt. ${
+                      firstLeg.departurePlatform
+                    }) -> ${attrs.arrivalStationName} (pt. ${
+                      lastLeg.arrivalPlatform
+                    })\n${parseDatetime(firstLeg.departure)} -> ${parseDatetime(
+                      lastLeg.arrival
+                    )}`
+                  )
+              },
+              m("ion-icon.font-bold.text-xl", { name: "clipboard-outline" })
+            )
+          ])
         ])
       ])
     ]);
