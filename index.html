@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Mithril TypeScript App</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DB My Routes</title>
     <link rel="manifest" href="src/manifest.json">
 </head>
+
 <body>
-<div id="app"></div>
-<script type="module" src="src/index.ts"></script>
-<script type="module"
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script>
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("src/sw.js").then(registration => {
-            console.log("ServiceWorker registration successful.");
-        }).catch(err => {
-            console.log("ServiceWorker registration failed.");
-        });
-    }
-</script>
+    <div id="app"></div>
+    <script type="module" src="src/index.ts"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("src/sw.js").then(registration => {
+                console.log("ServiceWorker registration successful.");
+            }).catch(err => {
+                console.log("ServiceWorker registration failed.");
+            });
+        }
+    </script>
 </body>
+
 </html>

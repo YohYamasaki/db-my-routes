@@ -7,7 +7,7 @@
   "start_url": "https://db-my-routes.vercel.app",
   "icons": [
     {
-      "src": "/assets/icon-192x192-CD3DXUoY.png",
+      "src": "/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
