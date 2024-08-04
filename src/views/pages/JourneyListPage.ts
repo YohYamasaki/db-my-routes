@@ -5,6 +5,7 @@ import { Header } from "../components/Header";
 import { ToggleSwitch } from "../components/parts/ToggleSwitch";
 import { AppActions, AppState } from "../../states/appState";
 import { LoadingOverlay } from "../components/LoadingOverlay";
+import { Toast } from "../components/Toast";
 
 interface JourneyListPageAttrs {
   departureId: string;
@@ -34,7 +35,12 @@ export class JourneyListPage implements ClassComponent<JourneyListPageAttrs> {
   view({ attrs }: Vnode<JourneyListPageAttrs>): void | Children {
     return m("div.w-full.min-h-screen", [
       m(Header, { title: "Journey List", showBackButton: true }),
+<<<<<<< Updated upstream:html/src/views/pages/JourneyListPage.ts
       m(LoadingOverlay, { isShow: this.state.isLoading }),
+=======
+      m(Toast),
+      m(LoadingOverlay, { isShow: appState.isLoading }),
+>>>>>>> Stashed changes:src/views/pages/JourneyListPage.ts
       m(
         "h2.text-2xl.font-bold.mt-2",
         `${attrs.departureName} -> ${attrs.arrivalName}`
