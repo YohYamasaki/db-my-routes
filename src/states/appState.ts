@@ -7,11 +7,7 @@ export interface appActions {
   hideLoading: () => void;
 }
 
-export const appState = {
-  isLoading: false,
-  isToastShowing: false,
-  toastText: ""
-};
+export const appState = {isLoading: false};
 
 export const appActions = {
   showLoading: () => {
@@ -20,14 +16,4 @@ export const appActions = {
   hideLoading: () => {
     appState.isLoading = false;
   },
-  showToast: (text: string) => {
-    appState.isToastShowing = true;
-    // TODO: create different styles of the toast
-    appState.toastText = text;
-    // reset toast
-    setTimeout(() => {
-      appState.isToastShowing = false;
-      appState.toastText = "";
-    }, 2000);
-  }
 };

@@ -1,7 +1,7 @@
-import m, { ClassComponent, Vnode } from "mithril";
-import { journey } from "../../types/journey";
-import { parseDatetime } from "../../utils/parseDatetime";
-import { ListItem } from "./parts/ListItem";
+import m, {ClassComponent, Vnode} from "mithril";
+import {journey} from "../../types/journey";
+import {parseDatetime} from "../../utils/parseDatetime";
+import {ListItem} from "./parts/ListItem";
 
 interface JourneyTileAttr {
   arrivalStationName: string;
@@ -10,15 +10,16 @@ interface JourneyTileAttr {
 }
 
 export class JourneyTile implements ClassComponent<JourneyTileAttr> {
-  view({ attrs }: Vnode<JourneyTileAttr>) {
+  view({attrs}: Vnode<JourneyTileAttr>) {
     const journey = attrs.journey;
     const firstLeg = journey.legs[0];
     const lastLeg = journey.legs[journey.legs.length - 1];
-    const isCancelled = journey.legs.some(leg => leg.cancelled);
+    const isCancelled = journey.legs.some((leg) => leg.cancelled);
 
     const handleCopy = (text: string) => {
       navigator.clipboard.writeText(text);
       //   TODO: add notification here after implementing toast
+      alert("Copied");
     };
 
     return m(ListItem, [
@@ -47,7 +48,7 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
                 {
                   class: firstLeg.departureDelay!
                     ? "text-red-600"
-                    : "text-green-300"
+                    : "text-green-300",
                 },
                 `${parseDatetime(firstLeg.departure)}`
               ),
@@ -57,20 +58,20 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
                 {
                   class: lastLeg.arrivalDelay!
                     ? "text-red-600"
-                    : "text-green-300"
+                    : "text-green-300",
                 },
                 ` ${parseDatetime(lastLeg.arrival)}`
-              )
+              ),
             ]),
             // train name
             journey.legs.map(
-              leg =>
+              (leg) =>
                 leg.line &&
                 m(
                   "span.text-sm.bg-gray-200.text-gray-900.rounded-sm.px-1.mr-2",
                   `${leg.line.name}`
                 )
-            )
+            ),
           ]),
           m("div.flex.flex-col.justify-between.items-end", [
             // transfer number
@@ -88,13 +89,13 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
                     })\n${parseDatetime(firstLeg.departure)} -> ${parseDatetime(
                       lastLeg.arrival
                     )}`
-                  )
+                  ),
               },
-              m("ion-icon.font-bold.text-xl", { name: "clipboard-outline" })
-            )
-          ])
-        ])
-      ])
+              m("ion-icon.font-bold.text-xl", {name: "clipboard-outline"})
+            ),
+          ]),
+        ]),
+      ]),
     ]);
   }
 }
