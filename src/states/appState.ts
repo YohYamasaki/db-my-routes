@@ -7,7 +7,7 @@ export interface appActions {
   hideLoading: () => void;
 }
 
-export const appState = { isLoading: false };
+export const appState = {isLoading: false};
 
 export const appActions = {
   showLoading: () => {
@@ -15,5 +15,5 @@ export const appActions = {
   },
   hideLoading: () => {
     appState.isLoading = false;
-  }
+  },
 };
