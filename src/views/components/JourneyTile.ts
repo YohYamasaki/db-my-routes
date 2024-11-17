@@ -1,7 +1,7 @@
-import m, {ClassComponent, Vnode} from "mithril";
-import {journey} from "../../types/journey";
-import {parseDatetime} from "../../utils/parseDatetime";
-import {ListItem} from "./parts/ListItem";
+import m, { ClassComponent, Vnode } from "mithril";
+import { journey } from "../../types/journey";
+import { parseDatetime } from "../../utils/parseDatetime";
+import { ListItem } from "./parts/ListItem";
 
 interface JourneyTileAttr {
   arrivalStationName: string;
@@ -10,7 +10,7 @@ interface JourneyTileAttr {
 }
 
 export class JourneyTile implements ClassComponent<JourneyTileAttr> {
-  view({attrs}: Vnode<JourneyTileAttr>) {
+  view({ attrs }: Vnode<JourneyTileAttr>) {
     const journey = attrs.journey;
     const firstLeg = journey.legs[0];
     const lastLeg = journey.legs[journey.legs.length - 1];
@@ -32,7 +32,7 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
         m("div.flex.w-full.justify-between", [
           m("div", [
             // cancelled
-            isCancelled && m("p", `Train Cancelled`),
+            isCancelled && m("p.text-red-500.font-bold", `Train Cancelled`),
             // original time
             m(
               "p.font-bold.text-lg.text-gray-500",
@@ -60,7 +60,7 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
                     ? "text-red-600"
                     : "text-green-300",
                 },
-                ` ${parseDatetime(lastLeg.arrival)}`
+                `${parseDatetime(lastLeg.arrival)}`
               ),
             ]),
             // train name
@@ -91,7 +91,7 @@ export class JourneyTile implements ClassComponent<JourneyTileAttr> {
                     )}`
                   ),
               },
-              m("ion-icon.font-bold.text-xl", {name: "clipboard-outline"})
+              m("ion-icon.font-bold.text-xl", { name: "clipboard-outline" })
             ),
           ]),
         ]),
