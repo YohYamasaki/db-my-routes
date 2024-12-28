@@ -1,7 +1,4 @@
-# Mithril with TypeScript Vite Starter
-DB train information
-
-## npm scripts
+# Simple DB route searching app
 
 * `npm run dev` - Starts the development server at port 3000
 * `npm run build` - Builds the application
